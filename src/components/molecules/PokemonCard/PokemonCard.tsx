@@ -1,6 +1,6 @@
 import { FC } from "react";
 import Image from "next/image";
-import { Text, Button } from "@/components";
+import { Text, Button, CollectButton } from "@/components";
 import { IconArrowNarrowRight } from "@tabler/icons-react";
 interface PokemonCardProps {}
 
@@ -28,7 +28,7 @@ export const PokemonCard: FC<PokemonCardProps> = () => {
           relevant
         </Text>
 
-        <Button className="">Collect</Button>
+        <CollectButton />
         <Button variant="subtle">
           Details <IconArrowNarrowRight className="ml-2" />
         </Button>
