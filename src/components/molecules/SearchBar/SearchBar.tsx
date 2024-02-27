@@ -11,7 +11,9 @@ export const SearchBar: FC<SearchBarProps> = ({ className }) => {
   const [search, setSearch] = useState("");
   return (
     <div className={clsx("flex gap-x-4 items-center", className)}>
-      <span className="color-[#D9EEF3] text-2xl font-bold ">Search</span>
+      <span className="color-[#D9EEF3] text-2xl font-bold hidden sm:block">
+        Search
+      </span>
       <Input value={search} onChange={(e) => setSearch(e.target.value)} />
       <Button
         onClick={() => {
