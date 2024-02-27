@@ -5,9 +5,15 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@tabler/icons-react':
+    specifier: ^2.47.0
+    version: 2.47.0(react@18.2.0)
   '@tanstack/react-query':
     specifier: ^5.24.1
     version: 5.24.1(react@18.2.0)
+  clsx:
+    specifier: ^2.1.0
+    version: 2.1.0
   connectkit:
     specifier: ^1.7.2
     version: 1.7.2(@babel/core@7.23.9)(@tanstack/react-query@5.24.1)(react-dom@18.2.0)(react-is@18.2.0)(react@18.2.0)(viem@2.7.15)(wagmi@2.5.7)
@@ -2988,6 +2994,20 @@ packages:
       tslib: 2.6.2
     dev: false
 
+  /@tabler/icons-react@2.47.0(react@18.2.0):
+    resolution: {integrity: sha512-iqly2FvCF/qUbgmvS8E40rVeYY7laltc5GUjRxQj59DuX0x/6CpKHTXt86YlI2whg4czvd/c8Ce8YR08uEku0g==}
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0
+    dependencies:
+      '@tabler/icons': 2.47.0
+      prop-types: 15.8.1
+      react: 18.2.0
+    dev: false
+
+  /@tabler/icons@2.47.0:
+    resolution: {integrity: sha512-4w5evLh+7FUUiA1GucvGj2ReX2TvOjEr4ejXdwL/bsjoSkof6r1gQmzqI+VHrE2CpJpB3al7bCTulOkFa/RcyA==}
+    dev: false
+
   /@tanstack/query-core@5.24.1:
     resolution: {integrity: sha512-DZ6Nx9p7BhjkG50ayJ+MKPgff+lMeol7QYXkvuU5jr2ryW/4ok5eanaS9W5eooA4xN0A/GPHdLGOZGzArgf5Cg==}
     dev: false
@@ -4306,6 +4326,11 @@ packages:
 
   /clsx@1.2.1:
     resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
+    engines: {node: '>=6'}
+    dev: false
+
+  /clsx@2.1.0:
+    resolution: {integrity: sha512-m3iNNWpd9rl3jvvcBnu70ylMdrXt8Vlq4HYadnU5fwcOtvkSQWPmj7amUcDT2qYI7risszBjI5AUIUox9D16pg==}
     engines: {node: '>=6'}
     dev: false
 
