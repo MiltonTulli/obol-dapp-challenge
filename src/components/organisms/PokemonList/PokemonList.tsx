@@ -4,17 +4,13 @@ import { PokemonCard, Button, SearchBar } from "@/components";
 import clsx from "clsx";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { fetcher, ITEMS_PER_PAGE, POKEMON_API } from "@/utils";
+import { IconLoader2 } from "@tabler/icons-react";
 
 interface PokemonListProps {
   className?: string;
   initialData: PokemonListApiResponse;
   children?: React.ReactNode;
 }
-
-// const response: PokemonListApiResponse = await fetcher(
-//   `/api/pokemons?search=${search}`
-// );
-// return response;
 
 export const PokemonList: FC<PokemonListProps> = ({
   initialData,
@@ -86,7 +82,10 @@ export const PokemonList: FC<PokemonListProps> = ({
           : children}
       </div>
       <div className="flex justify-center my-12">
-        {hasNextPage && !useFilteredResults && (
+        {isFetching && (
+          <IconLoader2 color="#82EDCC" className="animate-spin h-12 w-12" />
+        )}
+        {hasNextPage && !useFilteredResults && !isFetching && (
           <Button onClick={() => fetchNextPage()}>Load more</Button>
         )}
       </div>

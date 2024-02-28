@@ -1,11 +1,14 @@
 import { cap, POKEMON_SCRAP_URL } from "@/utils";
 import { load } from "cheerio";
 
-type Response = {
+export type ScrapResponse = {
   content: string[] | null;
   img: string | null;
 };
-export async function scrap(pokemonName: string, lines = 2): Promise<Response> {
+export async function scrap(
+  pokemonName: string,
+  lines = 2
+): Promise<ScrapResponse> {
   const url = `${POKEMON_SCRAP_URL}/${pokemonName}`;
   try {
     const content: string[] = [];

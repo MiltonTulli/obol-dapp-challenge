@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Web3Provider, ToastProvider } from "@/components/providers";
 import "./globals.css";
+import "react-tooltip/dist/react-tooltip.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
