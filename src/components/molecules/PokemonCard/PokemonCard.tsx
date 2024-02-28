@@ -46,7 +46,7 @@ export function PokemonCard({ name, url }: PokemonCardProps) {
           ))}
         </div>
 
-        <CollectButton />
+        <CollectButton pokemon={name} />
         <Button variant="subtle">
           Details <IconArrowNarrowRight className="ml-2" />
         </Button>
