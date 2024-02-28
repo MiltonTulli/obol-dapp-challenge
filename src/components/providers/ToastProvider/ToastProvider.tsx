@@ -2,7 +2,6 @@
 import React, { useState, useContext, createContext, useCallback } from "react";
 import ReactDOM from "react-dom";
 import { ToastContainer } from "@/components";
-import { type Toast } from "@/types";
 
 type ContextValue = {
   toast: (message: string, type?: string, duration?: number) => void;

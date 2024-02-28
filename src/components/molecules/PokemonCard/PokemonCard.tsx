@@ -1,32 +1,50 @@
+"use client";
+
 import { FC } from "react";
 import Image from "next/image";
 import { Text, Button, CollectButton } from "@/components";
 import { IconArrowNarrowRight } from "@tabler/icons-react";
-interface PokemonCardProps {}
+import { cap, fetcher } from "@/utils";
+import { useQuery } from "@tanstack/react-query";
+interface PokemonCardProps {
+  name: string;
+  url: string;
+}
 
-// <div className=" sm:w-[100%] sm:h-auto md:w-[395px] md:h-[506px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-// <div className=" bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-export const PokemonCard: FC<PokemonCardProps> = () => {
+export function PokemonCard({ name, url }: PokemonCardProps) {
+  const { data } = useQuery({
+    queryKey: [url],
+    queryFn: (): Promise<PokemonItemApiResponse> => fetcher(url),
+    staleTime: Infinity, // Data won't change
+  });
+
   return (
-    <div className=" bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-      <div className="w-[100%] h-[222px] relative rounded-t-lg">
+    <div className="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <div className="w-[100%] min-h-[230px] h-[fit-content] relative rounded-t-lg bg-white">
         <Image
-          className="w-[100%] "
-          src="/fallback-pokemon.svg"
+          src={`https://img.pokemondb.net/artwork/${name}.jpg`}
           alt=""
           layout="fill"
-          objectFit="cover"
+          objectFit="contain"
+          quality={100}
         />
       </div>
       <div className="flex flex-col gap-2 items-center p-5">
         <Text className="mb-2 text-lg font-bold text-[#D9EEF3]" nature="h5">
-          Pikachu
+          {cap(name)}
         </Text>
 
-        <Text className="mb-3 font-medium text-[#9CC2C9]">
-          List of the the abiilities here, max 3 or the info that you think is
-          relevant
-        </Text>
+        <div className="flex gap-2">
+          {data?.abilities?.slice(0, 3).map((ability) => (
+            <Text
+              nature="span"
+              key={ability.ability.name}
+              className="mb-3 font-medium text-[#9CC2C9]"
+            >
+              {cap(ability.ability.name)}
+            </Text>
+          ))}
+        </div>
 
         <CollectButton />
         <Button variant="subtle">
@@ -35,4 +53,4 @@ export const PokemonCard: FC<PokemonCardProps> = () => {
       </div>
     </div>
   );
-};
+}

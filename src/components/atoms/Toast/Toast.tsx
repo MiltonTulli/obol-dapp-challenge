@@ -21,7 +21,7 @@ export const Toast: React.FC<Props> = ({ message, type, onClose }) => {
 
   return (
     <div
-      className={`relative overflow-hidden rounded-md shadow-md mb-2 p-4 bg-gray-50  text-black w-72`}
+      className={`relative overflow-hidden rounded-md shadow-md mb-2 p-4 bg-gray-50 w-72`}
     >
       <div
         className={`absolute top-0 left-0 bottom-0 w-2 ${getBackgroundColor()}`}
@@ -29,12 +29,12 @@ export const Toast: React.FC<Props> = ({ message, type, onClose }) => {
 
       <div className="ml-3">
         <div className="flex items-center justify-between">
-          <p className="text-sm font-medium">{message}</p>
+          <p className="text-sm text-[#091011] font-medium">{message}</p>
           <button
             onClick={onClose}
             className="text-white focus:outline-none focus:ring focus:border-blue-300"
           >
-            <IconX className="h-5 w-5  text-black" />
+            <IconX className="h-5 w-5  text-[#091011]" />
           </button>
         </div>
       </div>

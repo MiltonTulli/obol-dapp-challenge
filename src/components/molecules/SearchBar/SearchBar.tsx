@@ -14,7 +14,11 @@ export const SearchBar: FC<SearchBarProps> = ({ className }) => {
       <span className="color-[#D9EEF3] text-2xl font-bold hidden sm:block">
         Search
       </span>
-      <Input value={search} onChange={(e) => setSearch(e.target.value)} />
+      <Input
+        className="h-[100%]"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
       <Button
         onClick={() => {
           console.log(search);
