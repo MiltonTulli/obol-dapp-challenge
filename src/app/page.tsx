@@ -10,7 +10,6 @@ export default async function Home() {
     <>
       <Header />
       <main className="container mx-auto p-8">
-        <SearchBar className="mt-8" />
         <PokemonList className="mt-12" initialData={initialPokemonResponseList}>
           {/* SSR first items */}
           {initialPokemonResponseList.results.map(({ name, url }) => {

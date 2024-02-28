@@ -1,8 +1,8 @@
 "use client";
-import { FC } from "react";
-import { PokemonCard, Button } from "@/components";
+import { FC, useMemo, useState } from "react";
+import { PokemonCard, Button, SearchBar } from "@/components";
 import clsx from "clsx";
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { fetcher, ITEMS_PER_PAGE, POKEMON_API } from "@/utils";
 
 interface PokemonListProps {
@@ -11,11 +11,30 @@ interface PokemonListProps {
   children?: React.ReactNode;
 }
 
+// const response: PokemonListApiResponse = await fetcher(
+//   `/api/pokemons?search=${search}`
+// );
+// return response;
+
 export const PokemonList: FC<PokemonListProps> = ({
   initialData,
   className = "",
   children,
 }) => {
+  const [useFilteredResults, setUseFilteredResults] = useState(false);
+  const [search, setSearch] = useState<string | null | undefined>("");
+
+  function handleSearch(searchTerm?: string | null) {
+    console.log(searchTerm);
+    if (searchTerm) {
+      setUseFilteredResults(true);
+      setSearch(searchTerm);
+    } else {
+      setUseFilteredResults(false);
+      setSearch("");
+    }
+  }
+
   const { data, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery({
     queryKey: ["pokemonList"],
     queryFn: async ({ pageParam = 0 }) => {
@@ -32,23 +51,43 @@ export const PokemonList: FC<PokemonListProps> = ({
     maxPages: initialData.count / ITEMS_PER_PAGE,
   });
 
+  const { data: searchData } = useQuery({
+    queryKey: ["pokemon-search", search],
+    staleTime: Infinity,
+    queryFn: async () => {
+      const response: PokemonSimpleResponse[] = await fetcher(
+        `/api/pokemons?search=${search}`
+      );
+      return response;
+    },
+    enabled: useFilteredResults && !!search,
+  });
+
+  const renderList = useMemo(() => {
+    if (useFilteredResults && search) {
+      return searchData;
+    }
+    return data?.pages?.flat();
+  }, [useFilteredResults, search, data?.pages, searchData]);
+
   return (
     <div>
+      <SearchBar className="mt-8" onSearch={handleSearch} />
       <div
         className={clsx(
           "grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3",
           className
         )}
       >
-        {data
-          ? data?.pages?.flat().map(({ name, url }) => {
+        {renderList
+          ? renderList?.map(({ name, url }) => {
               return <PokemonCard key={name} name={name} url={url} />;
             })
           : children}
       </div>
       <div className="flex justify-center my-12">
-        {hasNextPage && (
-          <Button onClick={() => fetchNextPage()}>Fetch More Pokemons</Button>
+        {hasNextPage && !useFilteredResults && (
+          <Button onClick={() => fetchNextPage()}>Load more</Button>
         )}
       </div>
     </div>

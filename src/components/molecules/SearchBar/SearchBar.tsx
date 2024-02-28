@@ -5,9 +5,10 @@ import clsx from "clsx";
 
 interface SearchBarProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string;
+  onSearch: (value?: string | null) => void;
 }
 
-export const SearchBar: FC<SearchBarProps> = ({ className }) => {
+export const SearchBar: FC<SearchBarProps> = ({ className, onSearch }) => {
   const [search, setSearch] = useState("");
   return (
     <div className={clsx("flex gap-x-4 items-center", className)}>
@@ -15,13 +16,22 @@ export const SearchBar: FC<SearchBarProps> = ({ className }) => {
         Search
       </span>
       <Input
+        clearable
+        onClear={() => {
+          setSearch("");
+          onSearch("");
+        }}
         className="h-[100%]"
         value={search}
-        onChange={(e) => setSearch(e.target.value)}
+        onChange={(e) => {
+          setSearch(e.target.value);
+          // Trigger onSearch if value is null
+          if (!e.target.value) onSearch("");
+        }}
       />
       <Button
         onClick={() => {
-          console.log(search);
+          onSearch(search);
         }}
       >
         Search
