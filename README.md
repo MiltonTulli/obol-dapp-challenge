@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Obol - dAPP Challenge
+
+by Milton Tulli
+
+---
+
+This is my solution to the Obol challenge. This is a very simple dApp that allows users to see a list of pokemons and "collect" them by signing a simple message and also filtering by name.
+
+> The app is hosted here 👉 [https://obol-dapp-challenge.vercel.app/](https://obol-dapp-challenge.vercel.app/).
+
+This project was bootstrapped with [Next](https://nextjs.org/).
+
+## Project Screen Shot(s)
+
+![app 1](https://github.com/MiltonTulli/obol-dapp-challenge/blob/main/screenshots/wp1.png)
+
+## Folder Structure
+
+Folder structure options and naming conventions for software projects
+
+    ├── public              # Public files (static content)
+    ├── src                 # Source files
+    │   ├── app
+    │   │   ├── api         # Api routes
+    │   ├── components      # Shared Components using atomic design principles
+    │   ├── contracts       # ABIs for internal contracts
+    │   ├── hooks           # Custom hooks
+    │   ├── utils           # Custom utils
+    │   └── types.ts        # Global types
+    ├── ...
+    └── README.md
 
 ## Getting Started
 
-First, run the development server:
+To run the game, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. **Clone the Repository:**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+   ```bash
+   git clone https://github.com/MiltonTulli/obol-dapp-challenge.git
+   cd blackjack
+   ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+2. **Install Dependencies:**
+   ```bash
+   npm install
+   ```
+3. **Start the Development Server:**
+   ```bash
+   npm run dev
+   ```
+   The app will be available at http://localhost:3000 in your web browser.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Built with 🛠️
 
-## Learn More
+| Lib         | URL                                                                    |
+| ----------- | ---------------------------------------------------------------------- |
+| Next        | [https://nextjs.org/](https://nextjs.org/)                             |
+| Wagmi       | [https://wagmi.sh/](https://wagmi.sh/)                                 |
+| Viem        | [https://viem.sh/](https://viem.sh/)                                   |
+| React Query | [https://tanstack.com/query/latest](https://tanstack.com/query/latest) |
+| Tailwindcss | [https://tailwindcss.com/](https://tailwindcss.com/)                   |
 
-To learn more about Next.js, take a look at the following resources:
+## Author ✒️
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+> **Milton Tulli** > milton.tulli@gmail.com > [https://www.linkedin.com/in/miltontulli/](https://www.linkedin.com/in/miltontulli/)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Notes:
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- El tooltip component usé otro componente ya que no estaba claro el diseño pero use un servicio custom
+- La firma de la tx estoy solamente haciendo una firma de un mensaje. Al ejercicio no establecer qué tx e

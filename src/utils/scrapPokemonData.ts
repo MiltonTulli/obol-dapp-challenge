@@ -5,6 +5,10 @@ export type ScrapResponse = {
   content: string[] | null;
   img: string | null;
 };
+
+/**
+ * @description Utility to perform web scrapping in order to get pokemon description and img
+ */
 export async function scrap(
   pokemonName: string,
   lines = 2

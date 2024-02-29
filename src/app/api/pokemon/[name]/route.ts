@@ -1,6 +1,7 @@
-import { scrap } from "@/lib/scrapPokemonData";
+import { scrap } from "@/utils/scrapPokemonData";
 import { NextResponse } from "next/server";
 
+// Simple service to return scrap data from a single pokemon
 export async function GET(
   request: Request,
   { params }: { params: { name: string } }
