@@ -38,7 +38,7 @@ To run the game, follow these steps:
 
    ```bash
    git clone https://github.com/MiltonTulli/obol-dapp-challenge.git
-   cd blackjack
+   cd obol-dapp-challenge
    ```
 
 2. **Install Dependencies:**
@@ -67,5 +67,4 @@ To run the game, follow these steps:
 
 ## Notes:
 
-- El tooltip component usé otro componente ya que no estaba claro el diseño pero use un servicio custom
-- La firma de la tx estoy solamente haciendo una firma de un mensaje. Al ejercicio no establecer qué tx e
+- After constructing the tooltip component as per the designs, I noticed that its appearance did not align well with the pokemonCard. Therefore, I opted to use a smaller tooltip component that only displays the description. The scraping service continues to function in the same manner. I took the liberty of making this change to expedite things, but in a real-world scenario, it would have been a subject for discussion with the design team. Generally, there is always an element triggering the tooltip, and since this was not clear in the design, I also added an "info" icon. Hovering over this icon reveals the tooltip
