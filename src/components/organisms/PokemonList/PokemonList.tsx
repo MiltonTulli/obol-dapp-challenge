@@ -1,11 +1,11 @@
 "use client";
 import { FC, useMemo, useState } from "react";
-import { PokemonCard, Button, SearchBar, Div } from "@/components";
+import InfiniteScroll from "react-infinite-scroller";
+import { PokemonCard, SearchBar, Div } from "@/components";
 import clsx from "clsx";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { fetcher, ITEMS_PER_PAGE, POKEMON_API } from "@/utils";
 import { IconLoader2 } from "@tabler/icons-react";
-
 interface PokemonListProps {
   className?: string;
   initialData: PokemonListApiResponse;
@@ -68,27 +68,34 @@ export const PokemonList: FC<PokemonListProps> = ({
   return (
     <Div>
       <SearchBar className="mt-8" onSearch={handleSearch} />
-      <Div
-        className={clsx(
-          "grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3",
-          className
-        )}
+      <InfiniteScroll
+        loadMore={() => {
+          // Only fetch more if is not displaying search results
+          if (!useFilteredResults && !isFetching) {
+            fetchNextPage();
+          }
+        }}
+        hasMore={hasNextPage}
       >
-        {renderList || isFetching || isSearching
-          ? renderList?.map(({ name, url }) => {
-              return <PokemonCard key={name} name={name} url={url} />;
-            })
-          : children}
-      </Div>
+        <Div
+          className={clsx(
+            "grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3",
+            className
+          )}
+        >
+          {renderList || isFetching || isSearching
+            ? renderList?.map(({ name, url }) => {
+                return <PokemonCard key={name} name={name} url={url} />;
+              })
+            : children}
+        </Div>
+      </InfiniteScroll>
       {useFilteredResults && renderList?.length === 0 && (
         <Div className="flex justify-center my-12">No results</Div>
       )}
       <Div className="flex justify-center my-12">
         {(isFetching || isSearching) && (
           <IconLoader2 color="#82EDCC" className="animate-spin h-12 w-12" />
-        )}
-        {hasNextPage && !useFilteredResults && !isFetching && (
-          <Button onClick={() => fetchNextPage()}>Load more</Button>
         )}
       </Div>
     </Div>
