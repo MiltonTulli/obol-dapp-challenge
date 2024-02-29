@@ -1,7 +1,6 @@
 "use client";
 import { useContext } from "react";
-
-import { ToastContext } from "@/components/providers/ToastProvider";
+import { ToastContext } from "@/contexts";
 
 export const useToast = () => {
   const context = useContext(ToastContext);

@@ -1,4 +1,4 @@
-import { Toast as ToastComponent } from "@/components";
+import { Toast as ToastComponent, Div } from "@/components";
 
 interface Props {
   toasts: Toast[];
@@ -6,7 +6,7 @@ interface Props {
 }
 export const ToastContainer: React.FC<Props> = ({ toasts, onClose }) => {
   return (
-    <div className="fixed bottom-0 right-0 p-4 z-50">
+    <Div className="fixed bottom-0 right-0 p-4 z-50">
       {toasts.map((toast) => (
         <ToastComponent
           key={toast.id}
@@ -15,6 +15,6 @@ export const ToastContainer: React.FC<Props> = ({ toasts, onClose }) => {
           onClose={() => onClose(toast.id)}
         />
       ))}
-    </div>
+    </Div>
   );
 };

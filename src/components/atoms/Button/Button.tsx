@@ -3,13 +3,14 @@ import { FC, ReactNode, ButtonHTMLAttributes } from "react";
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
-  variant?: "filled" | "subtle" | "outlined";
+  variant?: "filled" | "subtle" | "outlined" | "none";
 }
 
 const getButtonClasses = (
   variant: Props["variant"],
-  customClasses?: string
+  customClasses: string = ""
 ): string => {
+  if (variant === "none") return customClasses;
   const isFilled = variant === "filled";
   const isOutlined = variant === "outlined";
 

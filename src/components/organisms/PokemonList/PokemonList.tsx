@@ -1,6 +1,6 @@
 "use client";
 import { FC, useMemo, useState } from "react";
-import { PokemonCard, Button, SearchBar } from "@/components";
+import { PokemonCard, Button, SearchBar, Div } from "@/components";
 import clsx from "clsx";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { fetcher, ITEMS_PER_PAGE, POKEMON_API } from "@/utils";
@@ -17,11 +17,10 @@ export const PokemonList: FC<PokemonListProps> = ({
   className = "",
   children,
 }) => {
-  const [useFilteredResults, setUseFilteredResults] = useState(false);
+  const [useFilteredResults, setUseFilteredResults] = useState<boolean>(false);
   const [search, setSearch] = useState<string | null | undefined>("");
 
   function handleSearch(searchTerm?: string | null) {
-    console.log(searchTerm);
     if (searchTerm) {
       setSearch(searchTerm);
       setUseFilteredResults(true);
@@ -67,9 +66,9 @@ export const PokemonList: FC<PokemonListProps> = ({
   }, [useFilteredResults, data?.pages, searchData]);
 
   return (
-    <div>
+    <Div>
       <SearchBar className="mt-8" onSearch={handleSearch} />
-      <div
+      <Div
         className={clsx(
           "grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3",
           className
@@ -80,18 +79,18 @@ export const PokemonList: FC<PokemonListProps> = ({
               return <PokemonCard key={name} name={name} url={url} />;
             })
           : children}
-      </div>
+      </Div>
       {useFilteredResults && renderList?.length === 0 && (
-        <div className="flex justify-center my-12">No results</div>
+        <Div className="flex justify-center my-12">No results</Div>
       )}
-      <div className="flex justify-center my-12">
+      <Div className="flex justify-center my-12">
         {(isFetching || isSearching) && (
           <IconLoader2 color="#82EDCC" className="animate-spin h-12 w-12" />
         )}
         {hasNextPage && !useFilteredResults && !isFetching && (
           <Button onClick={() => fetchNextPage()}>Load more</Button>
         )}
-      </div>
-    </div>
+      </Div>
+    </Div>
   );
 };

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Text, Button, CollectButton } from "@/components";
+import { Text, Button, CollectButton, Div } from "@/components";
 import Link from "next/link";
 import { IconArrowNarrowRight } from "@tabler/icons-react";
 import { cap, fetcher, POKEMON_SCRAP_URL } from "@/utils";
@@ -14,8 +14,8 @@ export async function SSRPokemonCard({ name, url }: SSRPokemonCardProps) {
 
   return (
     <>
-      <div className="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <div className="w-[100%] min-h-[230px] h-[fit-content] relative rounded-t-lg bg-white text-[#869ca1]">
+      <Div className="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <Div className="w-[100%] min-h-[230px] h-[fit-content] relative rounded-t-lg bg-white text-[#869ca1]">
           <Image
             src={`https://img.pokemondb.net/artwork/${name}.jpg`}
             alt=""
@@ -23,13 +23,13 @@ export async function SSRPokemonCard({ name, url }: SSRPokemonCardProps) {
             objectFit="contain"
             quality={100}
           />
-        </div>
-        <div className="flex flex-col gap-2 items-center p-5">
+        </Div>
+        <Div className="flex flex-col gap-2 items-center p-5">
           <Text className="mb-2 text-lg font-bold text-[#D9EEF3]" nature="h5">
             {cap(name)}
           </Text>
 
-          <div className="flex gap-2">
+          <Div className="flex gap-2">
             {data?.abilities?.slice(0, 3).map((ability) => (
               <Text
                 nature="span"
@@ -39,7 +39,7 @@ export async function SSRPokemonCard({ name, url }: SSRPokemonCardProps) {
                 {cap(ability.ability.name)}
               </Text>
             ))}
-          </div>
+          </Div>
 
           <CollectButton pokemon={name} />
 
@@ -48,8 +48,8 @@ export async function SSRPokemonCard({ name, url }: SSRPokemonCardProps) {
               Details <IconArrowNarrowRight className="ml-2" />
             </Button>
           </Link>
-        </div>
-      </div>
+        </Div>
+      </Div>
     </>
   );
 }

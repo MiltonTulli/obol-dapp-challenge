@@ -1,4 +1,4 @@
 export { Button } from "./Button";
-export { Input } from "./Input";
+export { BaseInput } from "./BaseInput";
 export { Text } from "./Text";
-export { Toast } from "./Toast";
+export { Div } from "./Div";

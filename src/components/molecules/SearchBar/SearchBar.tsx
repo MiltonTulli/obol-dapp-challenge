@@ -1,6 +1,6 @@
 "use client";
 import { FC, InputHTMLAttributes, useState } from "react";
-import { Button, Input } from "@/components/atoms";
+import { Button, Input, Div, Text } from "@/components";
 import clsx from "clsx";
 
 interface SearchBarProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -9,14 +9,19 @@ interface SearchBarProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const SearchBar: FC<SearchBarProps> = ({ className, onSearch }) => {
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState<string>("");
   return (
-    <div className={clsx("flex gap-x-4 items-center", className)}>
-      <span className="color-[#D9EEF3] text-2xl font-bold hidden sm:block">
+    <Div className={clsx("flex gap-x-4 items-center", className)}>
+      <Text
+        nature="span"
+        className="color-[#D9EEF3] font-bold hidden sm:block"
+        size="2xl"
+      >
         Search
-      </span>
+      </Text>
       <Input
         clearable
+        placeholder="Search.."
         onClear={() => {
           setSearch("");
           onSearch("");
@@ -36,6 +41,6 @@ export const SearchBar: FC<SearchBarProps> = ({ className, onSearch }) => {
       >
         Search
       </Button>
-    </div>
+    </Div>
   );
 };
