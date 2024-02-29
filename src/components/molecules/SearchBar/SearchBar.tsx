@@ -15,7 +15,7 @@ export const SearchBar: FC<SearchBarProps> = ({ className, onSearch }) => {
       <Text
         nature="span"
         className="color-[#D9EEF3] font-bold hidden sm:block"
-        size="2xl"
+        size="200px"
       >
         Search
       </Text>

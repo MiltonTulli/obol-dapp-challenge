@@ -1,19 +1,18 @@
 "use client";
-
 import Image from "next/image";
-import { Text, Button, CollectButton, Div } from "@/components";
 import Link from "next/link";
 import {
   IconArrowNarrowRight,
   IconLoader2,
   IconInfoSquareRoundedFilled,
 } from "@tabler/icons-react";
-import { cap, fetcher, POKEMON_SCRAP_URL } from "@/utils";
 import { useQuery } from "@tanstack/react-query";
 import { Tooltip } from "react-tooltip";
-import { type ScrapResponse } from "@/utils/scrapPokemonData";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
+import { cap, fetcher, POKEMON_SCRAP_URL } from "@/utils";
+import { Text, Button, CollectButton, Div } from "@/components";
+import { type ScrapResponse } from "@/utils/scrapPokemonData";
 
 interface PokemonCardProps {
   name: string;

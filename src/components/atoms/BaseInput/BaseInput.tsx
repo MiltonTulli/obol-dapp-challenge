@@ -1,5 +1,4 @@
 import { FC, InputHTMLAttributes } from "react";
-import { IconX } from "@tabler/icons-react";
 import clsx from "clsx";
 interface BaseInputProps extends InputHTMLAttributes<HTMLInputElement> {
   clearable?: boolean;
