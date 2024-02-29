@@ -21,7 +21,7 @@ export const SearchBar: FC<SearchBarProps> = ({ className, onSearch }) => {
           setSearch("");
           onSearch("");
         }}
-        className="h-[100%]"
+        className="self-stretch"
         value={search}
         onChange={(e) => {
           setSearch(e.target.value);

@@ -17,7 +17,7 @@ export const Input: FC<InputProps> = ({
       <input
         {...inputProps}
         placeholder="Search.."
-        className="block w-[100%] rounded-md border-2 border-solid border-[#243D42] bg-[#111F22] py-1.5 pl-1 pr-8 text-[#D9EEF3] placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 outline-none"
+        className="block w-[100%] h-[100%] rounded-md border-2 border-solid border-[#243D42] bg-[#111F22] py-1.5 pl-3 pr-8 text-[#D9EEF3] placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 outline-none"
       />
       {clearable && inputProps.value && (
         <button
