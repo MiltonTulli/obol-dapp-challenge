@@ -12,6 +12,8 @@ import { cap, fetcher, POKEMON_SCRAP_URL } from "@/utils";
 import { useQuery } from "@tanstack/react-query";
 import { Tooltip } from "react-tooltip";
 import { type ScrapResponse } from "@/utils/scrapPokemonData";
+import { useEffect, useState } from "react";
+import clsx from "clsx";
 
 interface PokemonCardProps {
   name: string;
@@ -31,6 +33,11 @@ export function PokemonCard({ name, url }: PokemonCardProps) {
     staleTime: Infinity, // Data won't change
   });
 
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    setError(false);
+  }, [name]);
   return (
     <>
       <Div className="bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -41,11 +48,19 @@ export function PokemonCard({ name, url }: PokemonCardProps) {
             className="absolute top-1 left-1 h-5 w-5 hover:cursor-pointer z-10 outline-none"
           />
           <Image
-            src={`https://img.pokemondb.net/artwork/${name}.jpg`}
-            alt=""
+            src={
+              error
+                ? "/fallback-pokemon.png"
+                : `https://img.pokemondb.net/artwork/${name}.jpg`
+            }
+            onError={() => {
+              setError(true);
+            }}
+            alt="Pokemon"
             layout="fill"
             objectFit="contain"
             quality={100}
+            className={clsx("rounded-t-lg", error && "p-6")}
           />
         </Div>
         <Div className="flex flex-col gap-2 items-center p-5">

@@ -1,4 +1,4 @@
-import { Header, PokemonList, SSRPokemonCard } from "@/components";
+import { Header, PokemonList } from "@/components";
 import { fetcher, ITEMS_PER_PAGE, POKEMON_API } from "@/utils";
 
 export default async function Home() {
@@ -10,13 +10,10 @@ export default async function Home() {
     <>
       <Header />
       <main className="container mx-auto p-8">
-        <PokemonList className="mt-12" initialData={initialPokemonResponseList}>
-          {/* SSR first items */}
-          {initialPokemonResponseList.results.map(({ name, url }) => {
-            /* @ts-expect-error */
-            return <SSRPokemonCard key={name} name={name} url={url} />;
-          })}
-        </PokemonList>
+        <PokemonList
+          className="mt-12"
+          initialData={initialPokemonResponseList}
+        />
       </main>
     </>
   );
