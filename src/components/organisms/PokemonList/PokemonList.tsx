@@ -64,7 +64,7 @@ export const PokemonList: FC<PokemonListProps> = ({
       return searchData;
     }
     return data?.pages?.flat();
-  }, [useFilteredResults, search, data?.pages, searchData]);
+  }, [useFilteredResults, data?.pages, searchData]);
 
   return (
     <div>

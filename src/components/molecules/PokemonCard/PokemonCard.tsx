@@ -11,7 +11,7 @@ import {
 import { cap, fetcher, POKEMON_SCRAP_URL } from "@/utils";
 import { useQuery } from "@tanstack/react-query";
 import { Tooltip } from "react-tooltip";
-import { type ScrapResponse } from "@/lib/scrapPokemonData";
+import { type ScrapResponse } from "@/utils/scrapPokemonData";
 
 interface PokemonCardProps {
   name: string;
