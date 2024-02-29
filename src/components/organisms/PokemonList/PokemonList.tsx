@@ -23,11 +23,11 @@ export const PokemonList: FC<PokemonListProps> = ({
   function handleSearch(searchTerm?: string | null) {
     console.log(searchTerm);
     if (searchTerm) {
-      setUseFilteredResults(true);
       setSearch(searchTerm);
+      setUseFilteredResults(true);
     } else {
-      setUseFilteredResults(false);
       setSearch("");
+      setUseFilteredResults(false);
     }
   }
 
@@ -47,7 +47,7 @@ export const PokemonList: FC<PokemonListProps> = ({
     maxPages: initialData.count / ITEMS_PER_PAGE,
   });
 
-  const { data: searchData } = useQuery({
+  const { data: searchData, isFetching: isSearching } = useQuery({
     queryKey: ["pokemon-search", search],
     staleTime: Infinity,
     queryFn: async () => {
@@ -60,7 +60,7 @@ export const PokemonList: FC<PokemonListProps> = ({
   });
 
   const renderList = useMemo(() => {
-    if (useFilteredResults && search) {
+    if (useFilteredResults) {
       return searchData;
     }
     return data?.pages?.flat();
@@ -75,14 +75,17 @@ export const PokemonList: FC<PokemonListProps> = ({
           className
         )}
       >
-        {renderList
+        {renderList || isFetching || isSearching
           ? renderList?.map(({ name, url }) => {
               return <PokemonCard key={name} name={name} url={url} />;
             })
           : children}
       </div>
+      {useFilteredResults && renderList?.length === 0 && (
+        <div className="flex justify-center my-12">No results</div>
+      )}
       <div className="flex justify-center my-12">
-        {isFetching && (
+        {(isFetching || isSearching) && (
           <IconLoader2 color="#82EDCC" className="animate-spin h-12 w-12" />
         )}
         {hasNextPage && !useFilteredResults && !isFetching && (

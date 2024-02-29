@@ -1,5 +1,6 @@
 import { FC, InputHTMLAttributes } from "react";
 import { IconX } from "@tabler/icons-react";
+import clsx from "clsx";
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   clearable?: boolean;
   onClear?: () => void;
@@ -8,10 +9,11 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 export const Input: FC<InputProps> = ({
   clearable = false,
   onClear = () => {},
+  className = "",
   ...inputProps
 }) => {
   return (
-    <div className="relative flex-1 max-w-[635px]">
+    <div className={clsx("relative flex-1 max-w-[635px]", className)}>
       <input
         {...inputProps}
         placeholder="Search.."
@@ -23,11 +25,9 @@ export const Input: FC<InputProps> = ({
           onClick={onClear}
           className="absolute inset-y-0 right-0 flex items-center pr-2 cursor-pointer"
         >
-          {/* <span className="text-[#D9EEF3]">×</span> */}
           <IconX className="text-[#5c777c] hover:text-white" />
         </button>
       )}
     </div>
   );
 };
-// md:min-w-[635px]

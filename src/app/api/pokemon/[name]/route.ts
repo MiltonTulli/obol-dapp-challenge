@@ -6,5 +6,5 @@ export async function GET(
   { params }: { params: { name: string } }
 ) {
   const result = await scrap(params.name);
-  return NextResponse.json({ data: result });
+  return NextResponse.json(result);
 }
