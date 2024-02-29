@@ -6,7 +6,7 @@ export async function GET(request: Request) {
   const search = searchParams.get("search");
 
   if (search) {
-    // Perform unefitient server filtering to avoid client mapping/filtering. In a real case this would be handled by elasticsearch or other service.
+    // Employ server-side filtering to prevent the need for client-side mapping or filtering. In a practical scenario, such operations would typically be delegated to dedicated services like Elasticsearch or similar
     const searchResults = json
       .filter((pokemon) =>
         pokemon.name.toLowerCase().includes(search.trim().toLowerCase())
