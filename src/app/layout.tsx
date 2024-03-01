@@ -1,6 +1,15 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { Web3Provider, ToastProvider } from "@/components/providers";
+import dynamic from "next/dynamic";
+const Web3Provider = dynamic(
+  () => import("./../components/providers/Web3Provider"),
+  { ssr: false }
+);
+const ToastProvider = dynamic(
+  () => import("./../components/providers/ToastProvider"),
+  { ssr: false }
+);
+
 import "./globals.css";
 import "react-tooltip/dist/react-tooltip.css";
 
