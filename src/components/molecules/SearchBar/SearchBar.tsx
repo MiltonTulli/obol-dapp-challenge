@@ -14,8 +14,7 @@ export const SearchBar: FC<SearchBarProps> = ({ className, onSearch }) => {
     <Div className={clsx("flex gap-x-4 items-center", className)}>
       <Text
         nature="span"
-        className="color-[#D9EEF3] font-bold hidden sm:block"
-        size="3xl"
+        className="color-[#D9EEF3] font-bold hidden sm:block text-3xl"
       >
         Search
       </Text>
