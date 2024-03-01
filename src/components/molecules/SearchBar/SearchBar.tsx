@@ -1,15 +1,27 @@
 "use client";
-import { FC, InputHTMLAttributes, useState } from "react";
+import { FC, InputHTMLAttributes, useEffect, useState } from "react";
 import { Button, Input, Div, Text } from "@/components";
 import clsx from "clsx";
+import { useRouter, useSearchParams } from "next/navigation";
 
 interface SearchBarProps extends InputHTMLAttributes<HTMLInputElement> {
   className?: string;
-  onSearch: (value?: string | null) => void;
 }
 
-export const SearchBar: FC<SearchBarProps> = ({ className, onSearch }) => {
-  const [search, setSearch] = useState<string>("");
+export const SearchBar: FC<SearchBarProps> = ({ className }) => {
+  const searchParams = useSearchParams();
+  const [search, setSearch] = useState<string>(searchParams?.get("q") ?? "");
+  const router = useRouter();
+
+  useEffect(() => {
+    const prefetch = async () => {
+      router.prefetch(`/?q=${search}`);
+    };
+    prefetch();
+  }, [search]);
+  function onSearch(value: string | null) {
+    router.push(value ? `/?q=${value}` : "/");
+  }
   return (
     <Div className={clsx("flex gap-x-4 items-center", className)}>
       <Text

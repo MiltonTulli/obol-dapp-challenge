@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import dynamic from "next/dynamic";
+
 const Web3Provider = dynamic(
-  () => import("./../components/providers/Web3Provider"),
-  { ssr: false }
+  () => import("./../components/providers/Web3Provider")
 );
 const ToastProvider = dynamic(
-  () => import("./../components/providers/ToastProvider"),
-  { ssr: false }
+  () => import("./../components/providers/ToastProvider")
 );
 
 import "./globals.css";

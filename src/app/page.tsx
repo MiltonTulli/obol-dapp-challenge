@@ -1,19 +1,30 @@
-import { Header, PokemonList } from "@/components";
-import { fetcher, ITEMS_PER_PAGE, POKEMON_API } from "@/utils";
+import {
+  Header,
+  PokemonList,
+  SearchBar,
+  PokemonListLoader,
+} from "@/components";
+import { fetchPokemons } from "@/actions/fetch-pokemons";
 
-export default async function Home() {
-  const initialPokemonResponseList: PokemonListApiResponse = await fetcher(
-    `${POKEMON_API}/pokemon?offset=0&limit=${ITEMS_PER_PAGE}`
-  );
+type Props = {
+  params: {};
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export default async function Home(props: Props) {
+  const search = (props.searchParams.q ?? "") as string;
+  const pokes = await fetchPokemons(1, search.trim());
+  if (!pokes) throw new Error("Can't fetch pokemons");
 
   return (
     <>
       <Header />
       <main className="container max-w-screen-xl mx-auto p-8">
-        <PokemonList
-          className="mt-12"
-          initialData={initialPokemonResponseList}
-        />
+        <SearchBar className="mt-8 mb-6" />
+        {/* Show ssr list */}
+        <PokemonList initialData={pokes} />
+        {/* Show client-side list after initial list only when search is no "enabled" */}
+        {!search && <PokemonListLoader initialData={pokes} />}
       </main>
     </>
   );
