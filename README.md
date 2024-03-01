@@ -12,7 +12,7 @@ This project was bootstrapped with [Next](https://nextjs.org/).
 
 ## Project Screen Shot(s)
 
-![app 1](https://github.com/MiltonTulli/obol-dapp-challenge/blob/main/screenshots/wp2.png)
+![app 1](https://github.com/MiltonTulli/obol-dapp-challenge/blob/main/screenshots/wp.png)
 
 ## Folder Structure
 
