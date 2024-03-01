@@ -9,7 +9,7 @@ export default async function Home() {
   return (
     <>
       <Header />
-      <main className="container mx-auto p-8">
+      <main className="container max-w-screen-xl mx-auto p-8">
         <PokemonList
           className="mt-12"
           initialData={initialPokemonResponseList}
