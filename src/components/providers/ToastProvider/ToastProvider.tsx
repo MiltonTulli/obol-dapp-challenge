@@ -39,6 +39,6 @@ export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
       </ToastContext.Provider>
     );
   } else {
-    return null;
+    return <>{children}</>;
   }
 };

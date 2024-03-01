@@ -10,7 +10,7 @@ interface CollectButtonProps {
 export const CollectButton: FC<CollectButtonProps> = ({ pokemon }) => {
   const { toast } = useToast();
   const collect = useCollect({
-    onError: (error) => toast(error),
+    onError: (error) => toast(error, "error"),
     onSuccess: (signature) => {
       toast("Pokemon Succesfully Collected");
       // TODO: For this excercise I just log this.
