@@ -4,7 +4,7 @@ by Milton Tulli
 
 ---
 
-This is my solution to the Obol challenge. This is a very simple dApp that allows users to see a list of pokemons and "collect" them by signing a simple message and also filtering by name. Additionally, it includes a search feature that queries an endpoint to discover similar results and a web scraper that retrieves additional data for Pokémon
+This is my solution to the [Obol dApp challenge](https://github.com/f1lander/obol-dAPP-challenge/blob/main/README.md). This is a very simple dApp that allows users to see a list of pokemons and "collect" them by signing a simple message and also filtering by name. Additionally, it includes a search feature that queries an endpoint to discover similar results and a web scraper that retrieves additional data for Pokémon
 
 > The app is hosted here 👉 [https://obol-dapp-challenge.vercel.app/](https://obol-dapp-challenge.vercel.app/).
 
@@ -68,4 +68,4 @@ To run the game, follow these steps:
 
 ## Notes:
 
-- After constructing the tooltip component as per the designs, I noticed that its appearance did not align well with the pokemonCard. Therefore, I opted to use a smaller tooltip component that only displays the description. The scraping service continues to function in the same manner. I took the liberty of making this change to expedite things, but in a real-world scenario, it would have been a subject for discussion with the design team. Generally, there is always an element triggering the tooltip, and since this was not clear in the design, I also added an "info" icon. Hovering over this icon reveals the tooltip
+- After constructing the tooltip component as per the designs, I noticed that its appearance did not align well with the pokemonCard. Therefore, I opted to use a smaller tooltip component that only displays the description. The scraping service continues to function in the same manner. I took the liberty of making this change to expedite things, but in a real scenario, it would have been a subject for discussion with the design team. Generally, there is always an element triggering the tooltip, and since this was not clear in the design, I also added an "info" icon and hovering over this icon reveals the tooltip.
